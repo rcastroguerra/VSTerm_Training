@@ -520,3 +520,11 @@ These are the four **basic entries to memorize** when using VSTerm to check in:
 It’s important to note that **Timatic is switched off in VSTerm**.  
 
 **CBP** and some electronic travel systems are still checked in the system, such as **ESTAs**, but you must take **extra care** if unsure about visa or entry requirements for certain countries, especially when dealing with **different nationalities or passports**.
+
+<div style="font-family: Consolas, monospace; background:#eee3e3; color:#0d0d0d; padding:10px; border:2px solid black; width:90%; white-space:pre;">
+VSTERM32 - Host Terminal for Windows
+File Edit Options Tools Window Help L5CG902493S
+
+<span style="color:green;">>LOG/A/037915/PD<></span>
+&lt;ENTER PASSWORD&gt; ***********
+</div>
