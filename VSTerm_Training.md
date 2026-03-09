@@ -1,21 +1,5 @@
-<svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="500" height="200" fill="#eee3e3" stroke="#000000" stroke-width="2"/>
-  <text x="10" y="30" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#0d0d0d">
-    VSTERM32 - Host Terminal for Windows
-  </text>
-  <text x="10" y="50" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#0d0d0d">
-    File Edit Options Tools Window Help
-  </text>
-  <rect x="5" y="70" width="490" height="100" fill="#800080" rx="3" ry="3"/>
-  <text x="15" y="90" font-family="Consolas, 'Courier New', monospace" font-size="12" fill="#FFFF00">
-VS RECORD LOCATOR CSY8YE
-1. 1LAWRENCE/MATTHEW
-2. 1LAWRENCE/SARAH
-  </text>
-  <text x="15" y="180" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#00FF00">
-&gt;
-  </text>
-</svg>
+![terminal](/imgsvg/001.svg)
+
 
 
 ## Accessing VSTerm
