@@ -16,3 +16,4 @@ deactivate
 
 #terminal translator
 python translate_notebook.py
+

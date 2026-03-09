@@ -1,3 +1,23 @@
+<svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="500" height="200" fill="#eee3e3" stroke="#000000" stroke-width="2"/>
+  <text x="10" y="30" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#0d0d0d">
+    VSTERM32 - Host Terminal for Windows
+  </text>
+  <text x="10" y="50" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#0d0d0d">
+    File Edit Options Tools Window Help
+  </text>
+  <rect x="5" y="70" width="490" height="100" fill="#800080" rx="3" ry="3"/>
+  <text x="15" y="90" font-family="Consolas, 'Courier New', monospace" font-size="12" fill="#FFFF00">
+VS RECORD LOCATOR CSY8YE
+1. 1LAWRENCE/MATTHEW
+2. 1LAWRENCE/SARAH
+  </text>
+  <text x="15" y="180" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#00FF00">
+&gt;
+  </text>
+</svg>
+
+
 ## Accessing VSTerm
 
 VSTerm can be opened in **two ways**:
@@ -520,24 +540,3 @@ These are the four **basic entries to memorize** when using VSTerm to check in:
 It’s important to note that **Timatic is switched off in VSTerm**.  
 
 **CBP** and some electronic travel systems are still checked in the system, such as **ESTAs**, but you must take **extra care** if unsure about visa or entry requirements for certain countries, especially when dealing with **different nationalities or passports**.
-
-<div style="width:90%; font-family:Consolas,'Courier New',monospace; background:#eee3e3; color:#0d0d0d; white-space:pre; padding:5px; line-height:1.2em; font-size:14px; border:2px solid #000; overflow-x:auto;">
-
-<div style="background:#800080; color:#FFFF00; padding:15px; font-family:Consolas,'Courier New',monospace; font-size:15px; white-space:pre;">
-
-VSTERM32 - Host Terminal for Windows  File Edit Options Tools Window Help  L5CG902493S
-
-&gt;4BMASK           *** TRAVEL DOCUMENTS ***           DOC 1 OF 1
-01.01 LAWRENCE/MATTHEW
-DOC TYP?:        NBR ?254625654           : VFY ?Y  VISA RQD ?N
-SURNAME ?LAWRENCE
-GIVEN NAME/S ?MATTHEW
-GENDER ?M  DOB ?10 ?10 ?90  CITIZ CNTRY ?GBR  RESID CNTRY ?GBR
-DOC ISSUE CNTRY?GBR  DOC EXP DATE ?10 ?10 ?30
-
-REDRESS?.............:  KNOWN TRAVELER?......................
-ACTION?.. A/DDR G/OV Q/QUIT E/END H/HLP Z/DEL MU/MD/MT/MB N/NXT
-?&gt;0909«
-
-</div>
-</div>
