@@ -157,98 +157,12 @@ Suppose you have the following booking:
 2. 1LAWRENCE/SARAH
 
 Simulated VSTerm session showing login and system messages:
- 
-<style>
-/* Terminal-like style for VSTerm simulation */
-.vsterm-console {
-    width: 90%;
-    font-family: Consolas, 'Courier New', monospace;
-    background-color: #eee3e3; /* terminal background */
-    color: #0d0d0d; /* default text color */
-    white-space: pre; /* preserve spacing */
-    padding: 5px; /* espacio interno */
-    line-height: 1.2em;
-    font-size: 14px;
-    border-radius: 0;
-    border: 2px solid #000000; /* borde negro visible en todos lados */
-    overflow-x: auto;
-}
-.vsterm-console .vsterm-highlight {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #800080; /* purple background */
-    color: #FFFF00; /* yellow text */
-    padding: 15px;
-    font-family: Consolas, 'Courier New', monospace;
-    font-size: 15px;
-    white-space: pre;
-    border-radius: 3px;
-}
-.vsterm-console .prompt {
-    color: #00FF00; /* green prompts */
-}
-</style>
 
-<div class="vsterm-console">
- VSTERM32 - Host Terminal for Windows
- File   Edit     Options     Tools   Window  Help   L5CG902493S
-
-  <div class="vsterm-highlight">
-  >PS*1
-  </div>
-</div>
+![terminal](/imgsvg/008.svg)
 
 Simulated VSTerm session showing login and system messages:
- 
-<style>
-/* Terminal-like style for VSTerm simulation */
-.vsterm-console {
-    width: 90%;
-    font-family: Consolas, 'Courier New', monospace;
-    background-color: #eee3e3; /* terminal background */
-    color: #0d0d0d; /* default text color */
-    white-space: pre; /* preserve spacing */
-    padding: 5px; /* espacio interno */
-    line-height: 1.2em;
-    font-size: 14px;
-    border-radius: 0;
-    border: 2px solid #000000; /* borde negro visible en todos lados */
-    overflow-x: auto;
-}
-.vsterm-console .vsterm-highlight {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #800080; /* purple background */
-    color: #FFFF00; /* yellow text */
-    padding: 15px;
-    font-family: Consolas, 'Courier New', monospace;
-    font-size: 15px;
-    white-space: pre;
-    border-radius: 3px;
-}
-.vsterm-console .prompt {
-    color: #00FF00; /* green prompts */
-}
-</style>
 
-<div class="vsterm-console">
- VSTERM32 - Host Terminal for Windows
- File   Edit     Options     Tools   Window  Help   L5CG902493S
-
-  <div class="vsterm-highlight">
-  >4BMASK           *** TRAVEL DOCUMENTS ***           DOC 1 OF 1
-  01.01 LAWRENCE/MATTHEW
-  DOC TYP?:        NBR ?254625654           : VFY ?Y  VISA RQD ?N
-  SURNAME ?LAWRENCE
-  GIVEN NAME/S ?MATTHEW
-  GENDER ?M  DOB ?10 ?10 ?90  CITIZ CNTRY ?GBR  RESID CNTRY ?GBR
-  DOC ISSUE CNTRY?GBR  DOC EXP DATE ?10 ?10 ?30
-  &nbsp;&nbsp;
-  REDRESS?.............:  KNOWN TRAVELER?......................
-  ACTION?.. A/DDR G/OV Q/QUIT E/END H/HLP Z/DEL MU/MD/MT/MB N/NXT
-  ?>0909«
-  </div>
-</div>
+![terminal](/imgsvg/009.svg)
 
 ## VSTerm Travel Document Fields / PS* Details
 
