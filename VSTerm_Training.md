@@ -47,7 +47,9 @@ Here, we will learn about the **VSTerm Check-In process**.
 
 To log in to VSTerm, use the **LOG code** provided to you.  
 
+> LOG/A/USER_NUMBER
 
+> PASSWORD
 
 
 #### VSTerm Login Example 
@@ -175,6 +177,7 @@ Simulated VSTerm session showing login and system messages:
 | `NBR ?254625654` | Document number / Passport number |
 | `VFY ?Y` | Verification status: Y = Verified |
 | `VISA RQD ?N` | Indicates if a visa is required: N = No |
+| `CKD ?Y` | Checked status: indicates the document or information has been reviewed/checked |
 | `SURNAME ?LAWRENCE` | Passenger surname |
 | `GIVEN NAME/S ?MATTHEW` | Passenger first name(s) |
 | `GENDER ?M` | Passenger gender: M = Male, F = Female |
@@ -204,7 +207,43 @@ Simulated VSTerm session showing login and system messages:
 | `MB` | Modify booking. Make adjustments to the booking record. |
 | `N/NXT` | Next. Move to the **next document** if multiple travel documents exist for this passenger. |
 
+### We will execute the **`E/END`** action to finish the current document.
 
+## PASSENGER CONTACT TRACING DATA
+
+The **PASSENGER CONTACT TRACING DATA** screen within the **VSTERM32** environment is a tool designed to capture, verify, and update the contact information required for a passenger. 
+
+This form appears when the system needs to confirm essential data for operational, regulatory, or public‑health purposes. 
+
+Its structured layout guides the agent through each field, ensuring that **all mandatory information is collected accurately and consistently**.
+
+Simulated VSTerm session showing login and system messages:
+
+![terminal](/imgsvg/011.svg)
+
+
+| Field / Prompt                                      | Meaning / Description                                                                                     |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `=4BMASK`                                           | Command to display passenger contact tracing data.                                                        |
+| `*** PASSENGER CONTACT TRACING DATA ***`            | Header indicating the section is about passenger contact tracing.                                         |
+| `01.01 LAWRENCE/MATTHEW`                            | Passenger number (`01.01`) and full name (`LAWRENCE/MATTHEW`).                                            |
+| `US ADDRESS-/REQUIRED/ D-DECLINED/N-NOT PROVIDED?:` | Indicates if the US address is required and whether it was provided (`D` = Declined, `N` = Not Provided). |
+| `STREET?`                                           | Street address. Example: `101 MAIN STREET`.                                                               |
+| `CITY?`                                             | City of residence. Example: `NEW YORK`.                                                                   |
+| `STATE?`                                            | State or province. Example: `NY`.                                                                         |
+| `POSTAL CODE?`                                      | Postal or ZIP code. Example: `10111`.                                                                     |
+| `COUNTRY?USA /CTC-RQD/`                             | Country of residence (USA) and indication that CTC (Contact Tracing Code) is required.                    |
+| `PH1 TYP?`                                          | Type of phone 1 (e.g., mobile `M`).                                                                       |
+| `CNTRY CODE?`                                       | Country code for the phone number. Example: `44`.                                                         |
+| `NBR?`                                              | Phone number. Example: `222 444 5555`.                                                                    |
+| `D/N?`                                              | Indicates if the number is domestic (`D`) or not (`N`).                                                   |
+| `VFY?`                                              | Verification status of the phone or data. Example: `Y` = Verified.                                        |
+| `PH2 TYP?`                                          | Type of phone 2 (if available).                                                                           |
+| `EMAIL?`                                            | Primary email address.                                                                                    |
+| `EMAIL CONTD?`                                      | Continued or alternate email address.                                                                     |
+| `ACTION?`                                           | Action to take for this data. Options include `U` = Update, `H` = Help, `I` = Ignore.                     |
+
+---
 
 You can display a booking either by:
 

@@ -25,7 +25,19 @@
   <foreignObject x="15" y="90" width="460" height="500">
     <div xmlns="http://www.w3.org/1999/xhtml"
          style="font-family:Consolas; color:yellow; white-space:pre; font-size:12px;">
-
+  <text x="15" y="90" font-family="Consolas, 'Courier New', monospace" font-size="12" fill="#FFFF00" xml:space="preserve">
+    <tspan x="15" dy="0">&gt;4BMASK           *** TRAVEL DOCUMENTS ***           DOC 1 OF 1</tspan>
+    <tspan x="15" dy="18">01.01 LAWRENCE/MATTHEW</tspan>
+    <tspan x="15" dy="18">DOC TYP?:        NBR ?254625654           : VFY ?Y  VISA RQD ?N</tspan>
+    <tspan x="15" dy="18">SURNAME ?LAWRENCE                                       :CKD ?Y</tspan>
+    <tspan x="15" dy="18">GIVEN NAME/S ?MATTHEW</tspan>
+    <tspan x="15" dy="18">GENDER ?M  DOB ?10 ?10 ?90  CITIZ CNTRY ?GBR  RESID CNTRY ?GBR</tspan>
+    <tspan x="15" dy="18">DOC ISSUE CNTRY?GBR  DOC EXP DATE ?10 ?10 ?30</tspan>
+    <tspan x="15" dy="18"> </tspan>
+    <tspan x="15" dy="18">REDRESS?.............:  KNOWN TRAVELER?......................</tspan>
+    <tspan x="15" dy="18">ACTION?<span style="color:#0099FF;">E</span>. A/DDR G/OV Q/QUIT E/END H/HLP Z/DEL MU/MD/MT/MB N/NXT</tspan>
+    <tspan x="15" dy="18">                                                         ?&gt;0909</tspan>
+  </text>
     </div>
   </foreignObject>
 
