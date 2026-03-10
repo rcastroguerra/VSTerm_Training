@@ -109,6 +109,10 @@ Example:
 
 > **LAWRENCE** –  Surname 
 
+Command:
+
+> *503\\\\$LAWRENCE
+
 Simulated VSTerm session showing login and system messages:
 
 ![terminal](/imgsvg/006.svg)
@@ -157,6 +161,11 @@ Suppose you have the following booking:
 
 1. 1LAWRENCE/MATTHEW  
 2. 1LAWRENCE/SARAH
+
+Command:
+
+> PS*1
+
 
 Simulated VSTerm session showing login and system messages:
 
