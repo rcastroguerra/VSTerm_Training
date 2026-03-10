@@ -1,6 +1,3 @@
-![terminal](/imgsvg/001.svg)
-
-
 
 ## Accessing VSTerm
 
@@ -33,7 +30,7 @@ Below is a table that shows the **keyboard location of the main VSTerm delimiter
 
 Within the **VSTerm window**, the **system toolbar** will always be displayed at the top of the screen.
 
-<img src="./screenshots/term-toolbar.png" width="800"></img>
+![terminal](/imgsvg/002.svg)
 
 ## VSTerm Toolbar Functions
 
@@ -55,99 +52,18 @@ To log in to VSTerm, use the **LOG code** provided to you.
 
 #### VSTerm Login Example 
 
+Simulated VSTerm session showing login and system messages:
+
+![terminal](/imgsvg/003.svg)
+
+
+#### VSTerm Login Example 2
 
 
 Simulated VSTerm session showing login and system messages:
- 
-<style>
-/* Terminal-like style for VSTerm simulation */
-.vsterm-console {
-    width: 90%;
-    font-family: Consolas, 'Courier New', monospace;
-    background-color: #eee3e3; /* terminal background */
-    color: #0d0d0d; /* default text color */
-    white-space: pre; /* preserve spacing */
-    padding: 5px; /* espacio interno */
-    line-height: 1.2em;
-    font-size: 14px;
-    border-radius: 0;
-    border: 2px solid #000000; /* borde negro visible en todos lados */
-    overflow-x: auto;
-}
-.vsterm-console .vsterm-highlight {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #800080; /* purple background */
-    color: #FFFF00; /* yellow text */
-    padding: 15px;
-    font-family: Consolas, 'Courier New', monospace;
-    font-size: 15px;
-    white-space: pre;
-    border-radius: 3px;
-}
-.vsterm-console .prompt {
-    color: #00FF00; /* green prompts */
-}
-</style>
 
-<div class="vsterm-console">
- VSTERM32 - Host Terminal for Windows
- File   Edit     Options     Tools   Window  Help   L5CG902493S
+![terminal](/imgsvg/004.svg)
 
-  <div class="vsterm-highlight">
-  &gt;LOG/A/037915/PD&lt;&gt;
-  &lt;ENTER PASSWORD&gt;
-  ***********
-  </div>
-</div>
-
-#### VSTerm Login Example 
-
-
-Simulated VSTerm session showing login and system messages:
- 
-<style>
-/* Terminal-like style for VSTerm simulation */
-.vsterm-console {
-    width: 90%;
-    font-family: Consolas, 'Courier New', monospace;
-    background-color: #eee3e3; /* terminal background */
-    color: #0d0d0d; /* default text color */
-    white-space: pre; /* preserve spacing */
-    padding: 5px; /* espacio interno */
-    line-height: 1.2em;
-    font-size: 14px;
-    border-radius: 0;
-    border: 2px solid #000000; /* borde negro visible en todos lados */
-    overflow-x: auto;
-}
-.vsterm-console .vsterm-highlight {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #800080; /* purple background */
-    color: #FFFF00; /* yellow text */
-    padding: 15px;
-    font-family: Consolas, 'Courier New', monospace;
-    font-size: 15px;
-    white-space: pre;
-    border-radius: 3px;
-}
-.vsterm-console .prompt {
-    color: #00FF00; /* green prompts */
-}
-</style>
-
-<div class="vsterm-console">
- VSTERM32 - Host Terminal for Windows
- File   Edit     Options     Tools   Window  Help   L5CG902493S
-
-  <div class="vsterm-highlight">
-    A-LOGON COMPLETE/03JUN-ML/PD
-    DLM A/PD
-    AIR4 PRODUCTION-USERS MUST COMPLY WITH VAA SECURITY POLICY
-    VSTerm>
-  </div>
-</div>
 
 ## LOG Codes / Códigos LOG
 
@@ -178,46 +94,9 @@ These codes are used to track **logins** and system access in VSTerm.
 | **F12** | Clear the screen |
 
 Simulated VSTerm session showing login and system messages:
- 
-<style>
-/* Terminal-like style for VSTerm simulation */
-.vsterm-console {
-    width: 90%;
-    font-family: Consolas, 'Courier New', monospace;
-    background-color: #eee3e3; /* terminal background */
-    color: #0d0d0d; /* default text color */
-    white-space: pre; /* preserve spacing */
-    padding: 5px; /* espacio interno */
-    line-height: 1.2em;
-    font-size: 14px;
-    border-radius: 0;
-    border: 2px solid #000000; /* borde negro visible en todos lados */
-    overflow-x: auto;
-}
-.vsterm-console .vsterm-highlight {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #800080; /* purple background */
-    color: #FFFF00; /* yellow text */
-    padding: 15px;
-    font-family: Consolas, 'Courier New', monospace;
-    font-size: 15px;
-    white-space: pre;
-    border-radius: 3px;
-}
-.vsterm-console .prompt {
-    color: #00FF00; /* green prompts */
-}
-</style>
 
-<div class="vsterm-console">
- VSTERM32 - Host Terminal for Windows
- File   Edit     Options     Tools   Window  Help   L5CG902493S
+![terminal](/imgsvg/005.svg)
 
-  <div class="vsterm-highlight">
->
-  </div>
-</div>
 
 ## Searching for a Booking in VSTerm
 
@@ -229,100 +108,13 @@ Example:
 > **LAWRENCE** –  Surname 
 
 Simulated VSTerm session showing login and system messages:
- 
-<style>
-/* Terminal-like style for VSTerm simulation */
-.vsterm-console {
-    width: 90%;
-    font-family: Consolas, 'Courier New', monospace;
-    background-color: #eee3e3; /* terminal background */
-    color: #0d0d0d; /* default text color */
-    white-space: pre; /* preserve spacing */
-    padding: 5px; /* espacio interno */
-    line-height: 1.2em;
-    font-size: 14px;
-    border-radius: 0;
-    border: 2px solid #000000; /* borde negro visible en todos lados */
-    overflow-x: auto;
-}
-.vsterm-console .vsterm-highlight {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #800080; /* purple background */
-    color: #FFFF00; /* yellow text */
-    padding: 15px;
-    font-family: Consolas, 'Courier New', monospace;
-    font-size: 15px;
-    white-space: pre;
-    border-radius: 3px;
-}
-.vsterm-console .prompt {
-    color: #00FF00; /* green prompts */
-}
-</style>
 
-<div class="vsterm-console">
- VSTERM32 - Host Terminal for Windows
- File   Edit     Options     Tools   Window  Help   L5CG902493S
+![terminal](/imgsvg/006.svg)
 
-  <div class="vsterm-highlight">
->503//$LAWRENCE
-  </div>
-</div>
 
 Simulated VSTerm session showing login and system messages:
- 
-<style>
-/* Terminal-like style for VSTerm simulation */
-.vsterm-console {
-    width: 90%;
-    font-family: Consolas, 'Courier New', monospace;
-    background-color: #eee3e3; /* terminal background */
-    color: #0d0d0d; /* default text color */
-    white-space: pre; /* preserve spacing */
-    padding: 5px; /* espacio interno */
-    line-height: 1.2em;
-    font-size: 14px;
-    border-radius: 0;
-    border: 2px solid #000000; /* borde negro visible en todos lados */
-    overflow-x: auto;
-}
-.vsterm-console .vsterm-highlight {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #800080; /* purple background */
-    color: #FFFF00; /* yellow text */
-    padding: 15px;
-    font-family: Consolas, 'Courier New', monospace;
-    font-size: 15px;
-    white-space: pre;
-    border-radius: 3px;
-}
-.vsterm-console .prompt {
-    color: #00FF00; /* green prompts */
-}
-</style>
 
-<div class="vsterm-console">
- VSTERM32 - Host Terminal for Windows
- File   Edit     Options     Tools   Window  Help   L5CG902493S
-
-  <div class="vsterm-highlight">
-
-VS RECORD LOCATOR CSY8YE         ETKT PRESENT-SEE ETR* AND *T!
-1\. 1LAWRENCE/MATTHEW    2. 1LAWRENCE/SARAH«
- &nbsp;&nbsp;1 VS 503Y 03JUN1 LHRJFK HK2         600P  825P
- &nbsp;&nbsp;2 VS 504Y 03JUN1 JFKLHR HK2        1159P 1030AY1
-HA FAX- ** SSRS PRESENT **«
-NO FF DATA«
-TKT-TK/TE/TL30/03JUN1314/LHR«
-TKI-E/ADDL«
-FARE«
-4P A-GBP  2706.00 TX 473.79        TTL  3179.79 ML03JUN«
-FARE CALC«
-A LON VS NYC M1694.86YYSOADSA VS LON M1694.86YYSOADSA NUC339Y«
-  </div>
-</div>
+![terminal](/imgsvg/007.svg)
 
 
 ### Explanation of Each Line / Meaning

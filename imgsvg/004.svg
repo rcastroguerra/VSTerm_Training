@@ -6,7 +6,7 @@
   </text>
 
   <text x="10" y="50" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#0d0d0d" word-spacing="10" font-weight="bold">
-    File Edit Options Tools Window Help
+    File Edit Options Tools Window Help 5CG51711R8
   </text>
 
   <!-- Botones -->
@@ -22,6 +22,9 @@
   <rect x="5" y="60" width="490" height="535" fill="#800080" rx="3" ry="3"/>
 
   <text x="15" y="90" font-family="Consolas, 'Courier New', monospace" font-size="12" fill="#FFFF00">
-    
+    <tspan x="15" dy="0">A-LOGON COMPLETE/03JUN-ML/PD</tspan>
+    <tspan x="15" dy="20">DLM A/PD&lt;&lt;</tspan>
+    <tspan x="15" dy="20">AIR4 PRODUCTION-USERS MUST COMPLY WITH VAA SECURITY POLICY&lt;&lt;</tspan>
+    <tspan x="15" dy="20"> &gt;</tspan>
   </text>
 </svg>

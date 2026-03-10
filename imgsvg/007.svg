@@ -6,7 +6,7 @@
   </text>
 
   <text x="10" y="50" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#0d0d0d" word-spacing="10" font-weight="bold">
-    File Edit Options Tools Window Help
+    File Edit Options Tools Window Help 5CG51711R8
   </text>
 
   <!-- Botones -->
@@ -21,7 +21,19 @@
 
   <rect x="5" y="60" width="490" height="535" fill="#800080" rx="3" ry="3"/>
 
-  <text x="15" y="90" font-family="Consolas, 'Courier New', monospace" font-size="12" fill="#FFFF00">
+  <text x="15" y="90" font-family="Consolas, 'Courier New', monospace" font-size="12" fill="#FFFF00" xml:space="preserve">
+    <tspan x="15" dy="0">VS RECORD LOCATOR CSY8YE         ETKT PRESENT-SEE ETR* AND *T!</tspan>
+    <tspan x="15" dy="18">1. 1LAWRENCE/MATTHEW    2. 1LAWRENCE/SARAH</tspan>
+    <tspan x="15" dy="18">  1 VS 503Y 03JUN1 LHRJFK HK2         600P  825P</tspan>
+    <tspan x="15" dy="18">  2 VS 504Y 03JUN1 JFKLHR HK2        1159P 1030AY1</tspan>
+    <tspan x="15" dy="18">HA FAX- ** SSRS PRESENT **</tspan>
+    <tspan x="15" dy="18">NO FF DATA</tspan>
+    <tspan x="15" dy="18">TKT-TK/TE/TL30/03JUN1314/LHR</tspan>
+    <tspan x="15" dy="18">TKI-E/ADDL</tspan>
+    <tspan x="15" dy="18">FARE</tspan>
+    <tspan x="15" dy="18">4P A-GBP  2706.00 TX 473.79        TTL  3179.79 ML03JUN</tspan>
+    <tspan x="15" dy="18">FARE CALC</tspan>
+    <tspan x="15" dy="18">A LON VS NYC M1694.86YYSOADSA VS LON M1694.86YYSOADSA NUC339Y</tspan>
     
   </text>
 </svg>

@@ -6,7 +6,7 @@
   </text>
 
   <text x="10" y="50" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#0d0d0d" word-spacing="10" font-weight="bold">
-    File Edit Options Tools Window Help
+    File Edit Options Tools Window Help 5CG51711R8
   </text>
 
   <!-- Botones -->
@@ -21,7 +21,7 @@
 
   <rect x="5" y="60" width="490" height="535" fill="#800080" rx="3" ry="3"/>
 
-  <text x="15" y="90" font-family="Consolas, 'Courier New', monospace" font-size="12" fill="#FFFF00">
-    
+  <text x="15" y="90" font-family="Consolas, 'Courier New', monospace" font-size="16" fill="#FFFF00">
+    &gt;
   </text>
 </svg>
