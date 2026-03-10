@@ -25,7 +25,7 @@
     <tspan x="15" dy="0">&gt;4BMASK           *** TRAVEL DOCUMENTS ***           DOC 1 OF 1</tspan>
     <tspan x="15" dy="18">01.01 LAWRENCE/MATTHEW</tspan>
     <tspan x="15" dy="18">DOC TYP?:        NBR ?254625654           : VFY ?Y  VISA RQD ?N</tspan>
-    <tspan x="15" dy="18">SURNAME ?LAWRENCE</tspan>
+    <tspan x="15" dy="18">SURNAME ?LAWRENCE                                       :CKD ?Y</tspan>
     <tspan x="15" dy="18">GIVEN NAME/S ?MATTHEW</tspan>
     <tspan x="15" dy="18">GENDER ?M  DOB ?10 ?10 ?90  CITIZ CNTRY ?GBR  RESID CNTRY ?GBR</tspan>
     <tspan x="15" dy="18">DOC ISSUE CNTRY?GBR  DOC EXP DATE ?10 ?10 ?30</tspan>

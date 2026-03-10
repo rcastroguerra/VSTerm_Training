@@ -21,8 +21,13 @@
 
   <rect x="5" y="60" width="490" height="535" fill="#800080" rx="3" ry="3"/>
 
-  <text x="15" y="90" font-family="Consolas, 'Courier New', monospace" font-size="12" fill="#FFFF00">
-    <tspan x="15" dy="1.2em">&gt;*503//$LAWRENCE
-</tspan>
-  </text>
+  <!-- foreignObject con texto multilinea -->
+  <foreignObject x="15" y="90" width="460" height="500">
+    <div xmlns="http://www.w3.org/1999/xhtml"
+         style="font-family:Consolas; color:yellow; white-space:pre; font-size:12px;">
+
+    </div>
+  </foreignObject>
+
+  
 </svg>
