@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>VSTERM32</title>
+</head>
+<body>
+
+<div style="width:500px;">
+<svg id="vsterm" width="500" height="600" xmlns="http://www.w3.org/2000/svg">
+
+  <rect x="0" y="0" width="500" height="600" fill="#eee3e3" stroke="#000000" stroke-width="2"/>
+
+  <text x="10" y="20" font-family="Consolas, 'Courier New', monospace" font-size="16" fill="#0d0d0d" font-weight="bold">
+    VSTERM32 - Host Terminal for Windows
+  </text>
+
+  <text x="10" y="50" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#0d0d0d" word-spacing="10" font-weight="bold">
+    File Edit Options Tools Window Help
+  </text>
+
+  <!-- Botones -->
+  <rect x="415" y="10" width="20" height="20" fill="#d9d9d9" stroke="#000"/>
+  <text x="420" y="25" font-family="Consolas" font-size="14" fill="#000" font-weight="bold">_</text>
+
+  <rect x="440" y="10" width="20" height="20" fill="#d9d9d9" stroke="#000"/>
+  <text x="445" y="25" font-family="Consolas" font-size="16" fill="#000" font-weight="bold">□</text>
+
+  <rect x="465" y="10" width="20" height="20" fill="#d9d9d9" stroke="#000"/>
+  <text x="470" y="25" font-family="Consolas" font-size="14" fill="#000" font-weight="bold">X</text>
+
+  <!-- Área púrpura -->
+  <rect x="5" y="60" width="490" height="535" fill="#800080" rx="3" ry="3"/>
+
+  <!-- Salida -->
+  <text id="output" x="15" y="90" font-family="Consolas, 'Courier New', monospace" font-size="12" fill="#FFFF00"></text>
+
+  <!-- Prompt -->
+  <text id="prompt" x="15" y="560" font-family="Consolas, 'Courier New', monospace" font-size="12" fill="#FFFF00">></text>
+
+  <!-- Entrada -->
+  <text id="inputText" x="25" y="560" font-family="Consolas, 'Courier New', monospace" font-size="12" fill="#FFFF00"></text>
+
+</svg>
+</div>
+
+<!-- INPUT INVISIBLE FUNCIONAL -->
+<input id="hiddenInput" style="
+  opacity:0;
+  position:absolute;
+  top:0;
+  left:0;
+  width:1px;
+  height:1px;
+  border:none;
+  pointer-events:none;
+">
+
+<script>
+  const hiddenInput = document.getElementById("hiddenInput");
+  const inputText = document.getElementById("inputText");
+  const output = document.getElementById("output");
+  const svg = document.getElementById("vsterm");
+
+  // Al hacer click en el SVG, el input invisible recibe el foco
+  svg.addEventListener("click", () => hiddenInput.focus());
+
+  // Actualiza la línea de entrada en tiempo real
+  hiddenInput.addEventListener("input", () => {
+    inputText.textContent = hiddenInput.value;
+  });
+
+  // Procesa comandos al presionar Enter
+  hiddenInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const cmd = hiddenInput.value.trim().toLowerCase();
+      let result = "";
+
+      switch(cmd) {
+        case "help":
+          result = "Comandos: help, fecha, saludo, clear";
+          break;
+        case "fecha":
+          result = "Fecha actual: " + new Date().toLocaleString();
+          break;
+        case "saludo":
+          result = "Hola Raydel, VSTERM32 operativo.";
+          break;
+        case "clear":
+          output.textContent = "";
+          hiddenInput.value = "";
+          inputText.textContent = "";
+          return;
+        default:
+          result = "Comando no reconocido.";
+      }
+
+      // Escribe en la consola
+      output.textContent += "> " + cmd + "\n" + result + "\n";
+
+      // Limpia la entrada
+      hiddenInput.value = "";
+      inputText.textContent = "";
+    }
+  });
+</script>
+
+</body>
+</html>

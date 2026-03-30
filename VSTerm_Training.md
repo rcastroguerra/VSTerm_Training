@@ -253,6 +253,8 @@ Simulated VSTerm session showing login and system messages:
 | `ACTION?`                                           | Action to take for this data. Options include `U` = Update, `H` = Help, `I` = Ignore.                     |
 
 ---
+---
+---
 
 You can display a booking either by:
 
