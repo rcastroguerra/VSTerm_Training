@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSTERM32 - Host Terminal for Windows</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #2a2a2e 0%, #1a1a1e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Consolas', 'Courier New', 'Fira Code', monospace;
+            padding: 20px;
+        }
+
+        /* Contenedor principal - estilo terminal vintage */
+        .vsterminal {
+            width: 920px;
+            max-width: 100%;
+            background: #eee3e3;
+            border: 2px solid #000000;
+            box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* Barra superior estilo Windows clásico - estructura en columnas */
+        .terminal-header {
+            background: #eee3e3;
+            border-bottom: 1px solid #b0a0a0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Fila superior: título y botones */
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border-bottom: 1px solid #d0c0c0;
+        }
+
+        .main-title {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 15px;
+            font-weight: bold;
+            color: #0d0d0d;
+            letter-spacing: 0.3px;
+        }
+
+        /* Botones de ventana - ESQUINA SUPERIOR DERECHA */
+        .window-buttons {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .win-btn {
+            width: 28px;
+            height: 24px;
+            background: #d9d9d9;
+            border: 1px solid #4a4a4a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Consolas', monospace;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.1s linear;
+            color: #000;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 0 rgba(0,0,0,0.1);
+        }
+
+        .win-btn:hover {
+            background: #b0b0b0;
+            transform: scale(0.96);
+        }
+
+        .win-btn:active {
+            transform: scale(0.94);
+        }
+
+        /* Barra de menú - debajo del título */
+        .menu-bar {
+            padding: 6px 12px;
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            font-weight: bold;
+            color: #0d0d0d;
+            background: #e8dcdc;
+            border-top: 1px solid #fff8f8;
+        }
+
+        .menu-bar span {
+            cursor: pointer;
+            transition: all 0.1s;
+            padding: 2px 6px;
+        }
+
+        .menu-bar span:hover {
+            background: #c0b0b0;
+            text-decoration: underline;
+        }
+
+        /* Pantalla principal - fondo morado estilo CRT */
+        .terminal-screen {
+            background: #800080;
+            margin: 0 5px 5px 5px;
+            padding: 16px 12px;
+            min-height: 540px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: #FFFF00;
+            display: flex;
+            flex-direction: column;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        /* Área de scroll donde se muestra el historial + línea de entrada integrada */
+        .terminal-console {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 460px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            scroll-behavior: smooth;
+            padding-right: 6px;
+        }
+
+        /* Estilo para cada línea del historial */
+        .history-line {
+            display: flex;
+            flex-direction: column;
+            border-left: 2px solid #ffdd66;
+            padding-left: 10px;
+            margin-bottom: 8px;
+            animation: fadeSlide 0.2s ease;
+        }
+
+        .cmd-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .prompt-label {
+            color: #FFFF66;
+            font-weight: bold;
+            text-shadow: 0 0 2px #aa0;
+        }
+
+        .cmd-text {
+            color: #FFFFAA;
+            background: rgba(0,0,0,0.35);
+            padding: 0 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .output-text {
+            color: #e0e080;
+            font-size: 12px;
+            margin-top: 5px;
+            line-height: 1.45;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        /* LÍNEA DE ENTRADA ACTIVA - Escribes DIRECTAMENTE en la consola */
+        .active-input-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.45);
+            padding: 8px 10px;
+            margin: 6px 0 4px 0;
+            border: 1px solid #ffdd88;
+            border-radius: 4px;
+            flex-wrap: wrap;
+        }
+
+        .input-prompt {
+            color: #FFFF66;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        #consoleInput {
+            background: transparent;
+            border: none;
+            color: #FFFFAA;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            flex: 1;
+            outline: none;
+            caret-color: #ffdd99;
+            min-width: 200px;
+        }
+
+        #consoleInput:focus {
+            background: rgba(255,255,200,0.08);
+        }
+
+        /* Bloque de instrucción destacado */
+        .instruction-block {
+            background: rgba(0, 0, 0, 0.7);
+            border-left: 5px solid #FFD966;
+            padding: 10px 12px;
+            margin-top: 12px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .instruction-text {
+            color: #FFF0aa;
+        }
+
+        .instruction-text strong {
+            background: #332200;
+            padding: 2px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        .instruction-text strong:hover {
+            background: #665500;
+            transform: scale(1.02);
+        }
+
+        .inline-cmd {
+            background: #3a6622;
+            color: #ccff88;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.1s linear;
+            display: inline-block;
+            font-size: 12px;
+            margin: 0 2px;
+        }
+
+        .inline-cmd:hover {
+            background: #88aa44;
+            color: #000;
+            transform: scale(0.97);
+        }
+
+        .blink-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 16px;
+            background: #ffdd66;
+            animation: blinkStep 1s infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+
+        @keyframes blinkStep {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .terminal-console::-webkit-scrollbar {
+            width: 8px;
+        }
+        .terminal-console::-webkit-scrollbar-track {
+            background: #4a004a;
+        }
+        .terminal-console::-webkit-scrollbar-thumb {
+            background: #ffdd77;
+            border-radius: 3px;
+        }
+        
+        /* Responsive: en pantallas muy pequeñas el menú se ajusta */
+        @media (max-width: 600px) {
+            .menu-bar {
+                gap: 12px;
+            }
+            .win-btn {
+                width: 26px;
+                height: 22px;
+                font-size: 14px;
+            }
+            .main-title {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="vsterminal">
+    <!-- Cabecera con estructura: título y botones arriba, menú debajo -->
+    <div class="terminal-header">
+        <div class="header-top">
+            <div class="main-title">VSTERM32 - Host Terminal for Windows</div>
+            <!-- Botones en esquina superior derecha -->
+            <div class="window-buttons">
+                <div class="win-btn" id="btnMinimize" title="Minimizar">_</div>
+                <div class="win-btn" id="btnMaximize" title="Maximizar">□</div>
+                <div class="win-btn" id="btnClose" title="Cerrar">✕</div>
+            </div>
+        </div>
+        <!-- Barra de menú - debajo del título -->
+        <div class="menu-bar">
+            <span data-menu="file">File</span>
+            <span data-menu="edit">Edit</span>
+            <span data-menu="options">Options</span>
+            <span data-menu="tools">Tools</span>
+            <span data-menu="window">Window</span>
+            <span data-menu="help">Help</span>
+        </div>
+    </div>
+
+    <!-- Pantalla morada #800080 -->
+    <div class="terminal-screen">
+        <!-- Contenedor donde se muestra TODO: historial + línea de entrada editable -->
+        <div class="terminal-console" id="terminalConsole">
+            <!-- Línea de bienvenida estática -->
+            <div class="history-line welcome-msg">
+                <div class="cmd-row">
+                    <span class="prompt-label">VSTERM32&gt;</span>
+                    <span class="cmd-text">SYSTEM/BOOT</span>
+                </div>
+                <div class="output-text">
+                    ╔══════════════════════════════════════════════════════╗<br>
+                    ║  💻 <strong style="color:#FFFF99">TERMINAL ACTIVA - ESCRIBE DIRECTAMENTE EN LA CONSOLA</strong>  ║<br>
+                    ║  ⌨️  Comandos: help | dir | ver | cls | iniciar     ║<br>
+                    ║  🖱️  O haz clic en los botones verdes de abajo       ║<br>
+                    ╚══════════════════════════════════════════════════════╝
+                </div>
+            </div>
+            <!-- Aquí se insertará dinámicamente la línea de entrada activa -->
+        </div>
+
+        <!-- Bloque inferior con comandos rápidos e instrucción -->
+        <div class="instruction-block">
+            <div class="instruction-text">
+                ✨ <strong id="helpQuickBtn">[ HELP ]</strong> ✨ &nbsp; | &nbsp;
+                💡 Escribe <strong style="background:#332200;">iniciar</strong> o prueba:
+            </div>
+            <div>
+                <span class="inline-cmd" data-cmd="help">help</span>
+                <span class="inline-cmd" data-cmd="demo">demo</span>
+                <span class="inline-cmd" data-cmd="dir">dir</span>
+                <span class="inline-cmd" data-cmd="ver">ver</span>
+                <span class="inline-cmd" data-cmd="teclear">teclear</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ======================  BASE DE COMANDOS ========================
+    const commands = {
+        help: {
+            desc: "Muestra ayuda",
+            action: () => {
+                return `
+                    📟 <strong>COMANDOS VSTERM32</strong><br>
+                    • <span style="color:#FFFF88">help</span>      - Esta ayuda<br>
+                    • <span style="color:#FFFF88">dir</span>       - Lista directorio virtual<br>
+                    • <span style="color:#FFFF88">ver</span>       - Versión del terminal<br>
+                    • <span style="color:#FFFF88">cls</span>       - Limpia la pantalla<br>
+                    • <span style="color:#FFFF88">iniciar</span>   - Inicia guía interactiva<br>
+                    • <span style="color:#FFFF88">demo</span>      - Demostración automática<br>
+                    • <span style="color:#FFFF88">clickhelp</span> - Instrucciones de clic<br>
+                    • <span style="color:#FFFF88">teclear</span>   - Consejos de tecleo<br>
+                    • <span style="color:#FFFF88">about</span>     - Info del sistema
+                `;
+            }
+        },
+        dir: {
+            action: () => {
+                return `Volumen en unidad C: VSTERM32_CRT<br> Directorio de C:\\TERMINAL<br> 04/01/2026  10:42 AM    &lt;DIR&gt;          SISTEMA<br> 04/01/2026  10:42 AM    &lt;DIR&gt;          COMANDOS<br> 01/03/2026  09:14 AM             1,024 VTERM.HLP<br> 15/03/2026  03:21 PM               512 CONFIG.SYS<br> 2 archivos              1,536 bytes<br> 2 dirs   bytes libres`;
+            }
+        },
+        ver: {
+            action: () => `VSTERM32 Versión 4.2 (Build 2026) - Modo Consola Directa. VT100 emulation.`
+        },
+        cls: {
+            action: () => {
+                const consoleDiv = document.getElementById('terminalConsole');
+                const children = [...consoleDiv.children];
+                children.forEach(child => {
+                    if (child.id !== 'dynamicInputLine') {
+                        child.remove();
+                    }
+                });
+                addStaticHistoryLine('CLS', 'Pantalla limpiada. Terminal lista.');
+                return null;
+            }
+        },
+        iniciar: {
+            action: () => {
+                startGuidedTour();
+                return `🚀 <strong>GUÍA INTERACTIVA INICIADA</strong><br>✨ Sigue las sugerencias: usa "clickhelp" o haz clic en comandos verdes.<br>🎯 Los botones de la esquina superior derecha también responden.`;
+            }
+        },
+        demo: {
+            action: async () => {
+                simulateAutoCommand("help");
+                return `🎬 <strong>Demostración:</strong> ejecutando comando "help"...`;
+            }
+        },
+        clickhelp: {
+            action: () => {
+                return `🖱️ <strong>¿DÓNDE HACER CLIC?</strong><br>
+                → En los botones verdes inferiores (help, demo, dir...)<br>
+                → En el menú superior: File, Edit, Options...<br>
+                → En el texto resaltado <span style="color:#FFFF99">[ HELP ]</span> dentro del bloque amarillo.<br>
+                → <strong style="color:#FFAA66">En los botones de la esquina superior derecha: _ □ ✕</strong> (minimizar, maximizar, cerrar)<br>
+                → También puedes escribir directamente en la consola.`;
+            }
+        },
+        teclear: {
+            action: () => {
+                return `⌨️ <strong>ESCRITURA DIRECTA EN CONSOLA</strong><br>
+                • Simplemente escribe tu comando y presiona ENTER.<br>
+                • No hay caja separada: la línea de entrada está integrada al flujo.<br>
+                • Ejemplo: escribe "help", "dir", "ver", "iniciar".<br>
+                • También puedes escribir frases libres como "hola terminal".`;
+            }
+        },
+        about: {
+            action: () => `VSTERM32 - Terminal anfitrión para Windows. Interfaz de consola pura con botones de ventana en esquina superior derecha. Diseño vintage.`
+        }
+    };
+
+    // Elementos DOM
+    const consoleContainer = document.getElementById('terminalConsole');
+    
+    // Función para crear la línea de entrada activa (siempre presente al final)
+    function createInputLine() {
+        const existing = document.getElementById('dynamicInputLine');
+        if (existing) existing.remove();
+
+        const inputDiv = document.createElement('div');
+        inputDiv.className = 'active-input-line';
+        inputDiv.id = 'dynamicInputLine';
+        inputDiv.innerHTML = `
+            <span class="input-prompt">VSTERM32&gt;&gt;</span>
+            <input type="text" id="consoleInput" placeholder="Escribe aquí y presiona ENTER..." autocomplete="off" spellcheck="false">
+            <span class="blink-cursor"></span>
+        `;
+        consoleContainer.appendChild(inputDiv);
+        
+        const inputField = document.getElementById('consoleInput');
+        if (inputField) {
+            inputField.focus();
+            inputField.removeEventListener('keypress', handleEnterKey);
+            inputField.addEventListener('keypress', handleEnterKey);
+        }
+        return inputDiv;
+    }
+
+    // Manejador global del ENTER
+    function handleEnterKey(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const inputField = e.target;
+            const rawCommand = inputField.value.trim();
+            if (rawCommand === "") {
+                addStaticHistoryLine('', 'Comando vacío. Escribe help para ayuda.', true);
+                inputField.value = '';
+                inputField.focus();
+                return;
+            }
+            processUserCommand(rawCommand);
+            inputField.value = '';
+            setTimeout(() => {
+                const newInput = document.getElementById('consoleInput');
+                if (newInput) newInput.focus();
+            }, 20);
+        }
+    }
+
+    // Función para agregar líneas al historial
+    function addStaticHistoryLine(command, outputHtml, isError = false) {
+        const historyDiv = document.createElement('div');
+        historyDiv.className = 'history-line';
+        const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute:'2-digit', second:'2-digit' });
+        const borderColor = isError ? '#ff8866' : '#ffdd66';
+        historyDiv.style.borderLeftColor = borderColor;
+        const displayCommand = command === "" ? "<vacío>" : command;
+        historyDiv.innerHTML = `
+            <div class="cmd-row">
+                <span class="prompt-label">VSTERM32&gt;</span>
+                <span class="cmd-text">${escapeHtml(displayCommand)}</span>
+                <span style="color:#ccaa77; font-size:10px;">[${timestamp}]</span>
+            </div>
+            <div class="output-text" style="${isError ? 'color:#ffaa99' : ''}">
+                ${isError ? '⚠️ ' : '✓ '} ${outputHtml}
+            </div>
+        `;
+        const inputLineDiv = document.getElementById('dynamicInputLine');
+        if (inputLineDiv) {
+            consoleContainer.insertBefore(historyDiv, inputLineDiv);
+        } else {
+            consoleContainer.appendChild(historyDiv);
+        }
+        historyDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Procesar comando desde el input integrado
+    function processUserCommand(cmd) {
+        const lowerCmd = cmd.toLowerCase();
+        
+        if (lowerCmd === 'cls') {
+            const allHistory = document.querySelectorAll('#terminalConsole .history-line');
+            allHistory.forEach(line => line.remove());
+            addStaticHistoryLine('CLS', 'Pantalla borrada. Terminal lista.');
+            createInputLine();
+            return;
+        }
+        
+        if (commands[lowerCmd]) {
+            const output = commands[lowerCmd].action();
+            if (lowerCmd !== 'cls' && output !== null) {
+                addStaticHistoryLine(cmd, output);
+            } else if (lowerCmd !== 'cls') {
+                addStaticHistoryLine(cmd, "Comando ejecutado.");
+            }
+        } 
+        else if (cmd.match(/nombre/i) || cmd.match(/hello/i) || cmd.match(/hola/i) || cmd.match(/terminal/i)) {
+            addStaticHistoryLine(cmd, `👋 ¡Respuesta! Escribiste: "${escapeHtml(cmd)}". Terminal interactiva VSTERM32 lista.`);
+        }
+        else {
+            addStaticHistoryLine(cmd, `Comando no reconocido: "${escapeHtml(cmd)}". Usa "help" para lista.`, true);
+        }
+        
+        const inputElem = document.getElementById('consoleInput');
+        if (inputElem) inputElem.focus();
+    }
+
+    // Tour guiado
+    function startGuidedTour() {
+        setTimeout(() => {
+            addStaticHistoryLine('GUIA', '✨ <strong>TOUR INTERACTIVO</strong><br>📌 1) Escribe "clickhelp" para aprender sobre clics.<br>📌 2) Prueba los comandos rápidos verdes.<br>📌 3) El menú superior también responde.<br>📌 4) <strong style="color:#FFAA66">Botones esquina superior derecha: minimizar, maximizar, cerrar</strong><br>🎯 ¡Explora!');
+        }, 100);
+    }
+
+    // Simular escritura automática
+    async function simulateAutoCommand(cmdText) {
+        const inputField = document.getElementById('consoleInput');
+        if (!inputField) return;
+        inputField.value = '';
+        inputField.focus();
+        for (let ch of cmdText) {
+            inputField.value += ch;
+            await new Promise(r => setTimeout(r, 100));
+        }
+        await new Promise(r => setTimeout(r, 300));
+        const event = new KeyboardEvent('keypress', { key: 'Enter', bubbles: true });
+        inputField.dispatchEvent(event);
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // Configurar eventos globales (menús y botones de ventana)
+    function setupGlobalEvents() {
+        // Menús superiores
+        const menuItems = document.querySelectorAll('[data-menu]');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const menuName = item.getAttribute('data-menu');
+                addStaticHistoryLine(`MENU:${menuName}`, `Opción "${menuName}" seleccionada (simulación de terminal anfitrión).`);
+            });
+        });
+        
+        // BOTONES DE VENTANA - ESQUINA SUPERIOR DERECHA
+        const minBtn = document.getElementById('btnMinimize');
+        const maxBtn = document.getElementById('btnMaximize');
+        const closeBtn = document.getElementById('btnClose');
+        
+        if (minBtn) {
+            minBtn.addEventListener('click', () => {
+                addStaticHistoryLine('SYS', 'Minimizar ventana (efecto visual) - Terminal reducida');
+                const term = document.querySelector('.vsterminal');
+                term.style.transform = 'scale(0.97)';
+                term.style.transition = 'transform 0.15s';
+                setTimeout(() => {
+                    term.style.transform = '';
+                }, 200);
+            });
+        }
+        
+        if (maxBtn) {
+            maxBtn.addEventListener('click', () => {
+                addStaticHistoryLine('SYS', 'Maximizar ventana (simulado) - Modo pantalla completa virtual');
+                const term = document.querySelector('.vsterminal');
+                if (term.style.width === '98%') {
+                    term.style.width = '';
+                    term.style.maxWidth = '100%';
+                    addStaticHistoryLine('SYS', 'Restaurar tamaño original');
+                } else {
+                    term.style.width = '98%';
+                    term.style.maxWidth = '98%';
+                    addStaticHistoryLine('SYS', 'Ventana maximizada (simulación)');
+                }
+            });
+        }
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                if(confirm("¿Cerrar sesión de terminal? Se recargará la página para reiniciar")) {
+                    addStaticHistoryLine('SYS', 'Cerrando terminal...');
+                    setTimeout(() => location.reload(), 300);
+                } else {
+                    addStaticHistoryLine('SYS', 'Operación cancelada');
+                }
+            });
+        }
+        
+        // Comandos rápidos (botones verdes)
+        const quickCmds = document.querySelectorAll('.inline-cmd');
+        quickCmds.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const cmd = btn.getAttribute('data-cmd');
+                if (cmd) {
+                    const inputField = document.getElementById('consoleInput');
+                    if (inputField) {
+                        inputField.value = cmd;
+                        const fakeEvent = new KeyboardEvent('keypress', { key: 'Enter', bubbles: true });
+                        inputField.dispatchEvent(fakeEvent);
+                    } else {
+                        processUserCommand(cmd);
+                    }
+                }
+                e.stopPropagation();
+            });
+        });
+        
+        // Botón HELP del bloque instrucción
+        const helpQuick = document.getElementById('helpQuickBtn');
+        if (helpQuick) {
+            helpQuick.addEventListener('click', () => {
+                const inputFld = document.getElementById('consoleInput');
+                if (inputFld) {
+                    inputFld.value = 'help';
+                    const ev = new KeyboardEvent('keypress', { key: 'Enter', bubbles: true });
+                    inputFld.dispatchEvent(ev);
+                } else {
+                    processUserCommand('help');
+                }
+            });
+        }
+    }
+    
+    // Inicialización
+    function initTerminal() {
+        createInputLine();
+        setupGlobalEvents();
+        setTimeout(() => {
+            addStaticHistoryLine('SISTEMA', '✅ Consola interactiva lista. El menú está debajo del título y los botones en esquina superior derecha.');
+        }, 400);
+        const inputField = document.getElementById('consoleInput');
+        if (inputField) inputField.focus();
+        
+        consoleContainer.addEventListener('click', (e) => {
+            const inp = document.getElementById('consoleInput');
+            if (inp && e.target !== inp && !e.target.closest('.win-btn')) inp.focus();
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', initTerminal);
+</script>
+</body>
+</html>
