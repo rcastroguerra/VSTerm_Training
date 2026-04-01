@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSTERM32 - Host Terminal for Windows</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="vsterminal">
+    <!-- Cabecera con estructura: título y botones arriba, menú debajo -->
+    <div class="terminal-header">
+        <div class="header-top">
+            <div class="main-title">VSTERM32 - Host Terminal for Windows</div>
+            <!-- Botones en esquina superior derecha -->
+            <div class="window-buttons">
+                <div class="win-btn" id="btnMinimize" title="Minimizar">_</div>
+                <div class="win-btn" id="btnMaximize" title="Maximizar">□</div>
+                <div class="win-btn" id="btnClose" title="Cerrar">✕</div>
+            </div>
+        </div>
+        <!-- Barra de menú - debajo del título -->
+        <div class="menu-bar">
+            <span data-menu="file">File</span>
+            <span data-menu="edit">Edit</span>
+            <span data-menu="options">Options</span>
+            <span data-menu="tools">Tools</span>
+            <span data-menu="window">Window</span>
+            <span data-menu="help">Help</span>
+        </div>
+    </div>
+
+    <!-- Pantalla morada #800080 -->
+    <div class="terminal-screen">
+        <!-- Contenedor donde se muestra TODO: historial + línea de entrada editable -->
+        <div class="terminal-console" id="terminalConsole">
+            <!-- Línea de bienvenida estática -->
+            <div class="history-line welcome-msg">
+                <div class="cmd-row">
+                    <span class="prompt-label">VSTERM32&gt;</span>
+                    <span class="cmd-text">SYSTEM/BOOT</span>
+                </div>
+                <div class="output-text">
+                    ╔══════════════════════════════════════════════════════╗<br>
+                    ║  💻 <strong style="color:#FFFF99">TERMINAL ACTIVA - ESCRIBE DIRECTAMENTE EN LA CONSOLA</strong>  ║<br>
+                    ║  ⌨️  Comandos: help | dir | ver | cls | iniciar     ║<br>
+                    ║  🖱️  O haz clic en los botones verdes de abajo       ║<br>
+                    ╚══════════════════════════════════════════════════════╝
+                </div>
+            </div>
+            <!-- Aquí se insertará dinámicamente la línea de entrada activa -->
+        </div>
+
+        <!-- Bloque inferior con comandos rápidos e instrucción -->
+        <div class="instruction-block">
+            <div class="instruction-text">
+                ✨ <strong id="helpQuickBtn">[ HELP ]</strong> ✨ &nbsp; | &nbsp;
+                💡 Escribe <strong style="background:#332200;">iniciar</strong> o prueba:
+            </div>
+            <div>
+                <span class="inline-cmd" data-cmd="help">help</span>
+                <span class="inline-cmd" data-cmd="demo">demo</span>
+                <span class="inline-cmd" data-cmd="dir">dir</span>
+                <span class="inline-cmd" data-cmd="ver">ver</span>
+                <span class="inline-cmd" data-cmd="teclear">teclear</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script/script.js"></script>
+</body>
+</html>
