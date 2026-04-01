@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Interactiva - Guía Visual</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div class="terminal">
+        <div class="terminal-bar">
+            <div class="window-controls">
+                <div class="control close"></div>
+                <div class="control minimize"></div>
+                <div class="control maximize"></div>
+            </div>
+            <div class="terminal-title">VISUAL_GUIDE@interactive:~</div>
+        </div>
+        
+        <div class="terminal-content" id="terminalContent">
+
+            <div class="command-line">
+                <div class="prompt">➜ <span style="color:#4afc7c">VISUAL_GUIDE</span> </div>
+                <div class="command" data-command="help">$ help --interactive</div>
+                <div class="output">
+                    ┌─────────────────────────────────────────────────┐<br>
+                    │ 🖱️ <span style="color:#ffc107">HAZ CLIC EN LOS COMANDOS</span> │<br>
+                    └─────────────────────────────────────────────────┘
+                </div>
+            </div>
+
+            <div id="history"></div>
+
+            <div class="input-area">
+                <span class="input-prompt">➜ ~ $</span>
+                <input type="text" id="userInput" placeholder="Escribe tu comando aquí...">
+                <span class="cursor"></span>
+            </div>
+
+            <div class="highlight-instruction" id="highlightInstruction">
+                👆 <span>HAZ CLIC AQUÍ</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="help-tip" onclick="showHelp()">?</div>
+
+    <!-- JS -->
+    <script src="script/script.js"></script>
+</body>
+</html>

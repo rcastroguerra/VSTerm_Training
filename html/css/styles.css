@@ -1,0 +1,228 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0e27 0%, #0a0f2a 100%);
+            font-family: 'Courier New', 'Fira Code', 'Monaco', monospace;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Contenedor principal - La "pantalla" de la consola */
+        .terminal {
+            background: #0c0c1f;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(0, 255, 255, 0.1);
+            width: 900px;
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Barra superior estilo terminal */
+        .terminal-bar {
+            background: #1e1e2f;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #2a2a3a;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .control {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+        }
+
+        .close { background: #ff5f56; }
+        .minimize { background: #ffbd2e; }
+        .maximize { background: #27c93f; }
+
+        .terminal-title {
+            color: #6c6c8a;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Área de contenido de la terminal */
+        .terminal-content {
+            padding: 24px;
+            min-height: 500px;
+            position: relative;
+        }
+
+        /* Línea de comandos */
+        .command-line {
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .prompt {
+            color: #4afc7c;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .command {
+            color: #fff;
+            background: rgba(74, 252, 124, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .command:hover {
+            background: rgba(74, 252, 124, 0.3);
+            transform: scale(1.02);
+        }
+
+        /* Output del comando */
+        .output {
+            color: #a0a0c0;
+            margin-top: 8px;
+            margin-left: 20px;
+            border-left: 2px solid #4afc7c;
+            padding-left: 16px;
+        }
+
+        /* Área de entrada interactiva */
+        .input-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #2a2a3a;
+            transition: all 0.3s ease;
+        }
+
+        .input-area:focus-within {
+            border-color: #4afc7c;
+            box-shadow: 0 0 10px rgba(74, 252, 124, 0.2);
+        }
+
+        .input-prompt {
+            color: #4afc7c;
+            font-weight: bold;
+        }
+
+        #userInput {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            flex: 1;
+            outline: none;
+        }
+
+        /* Indicadores visuales para guiar al usuario */
+        .highlight-instruction {
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 20px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        .highlight-instruction span {
+            color: #ffc107;
+            font-weight: bold;
+        }
+
+        /* Efecto de cursor parpadeante */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: #4afc7c;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+            vertical-align: middle;
+        }
+
+        /* Animaciones */
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4);
+                border-color: #ffc107;
+            }
+            50% { 
+                box-shadow: 0 0 0 8px rgba(255, 193, 7, 0);
+                border-color: #ffc107;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Botón de ayuda flotante */
+        .help-tip {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4afc7c;
+            color: #0c0c1f;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .help-tip:hover {
+            transform: scale(1.1);
+        }
+
+        /* Scroll personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e1e2f;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #4afc7c;
+            border-radius: 4px;
+        }
